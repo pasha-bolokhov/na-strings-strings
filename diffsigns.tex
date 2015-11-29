@@ -1,0 +1,87 @@
+\documentclass{article}
+\usepackage{latexsym}
+\usepackage{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\geometry{letterpaper}
+
+%% common definitions
+\newcommand{\p}{\partial}
+\newcommand{\wt}{\widetilde}
+\newcommand{\ov}{\overline}
+\newcommand{\mc}[1]{\mathcal{#1}}
+\newcommand{\md}{\mathcal{D}}
+
+
+\newcommand{\GeV}{{\rm GeV}}
+\newcommand{\eV}{{\rm eV}}
+\newcommand{\Heff}{{\mathcal{H}_{\rm eff}}}
+\newcommand{\Leff}{{\mathcal{L}_{\rm eff}}}
+\newcommand{\el}{{\rm EM}}
+\newcommand{\uflavor}{\mathbf{1}_{\rm flavor}}
+\newcommand{\lgr}{\left\lgroup}
+\newcommand{\rgr}{\right\rgroup}
+
+\newcommand{\LUV}{\Lambda_{\rm UV}}
+\newcommand{\LNC}{\Lambda_{\rm NC}}
+\newcommand{\LQCD}{\Lambda_{\rm QCD}}
+\newcommand{\Mpl}{M_{\rm Pl}}
+\newcommand{\suc}{{{\rm SU}_{\rm C}(3)}}
+\newcommand{\sul}{{{\rm SU}_{\rm L}(2)}}
+\newcommand{\sutw}{{\rm SU}(2)}
+\newcommand{\suth}{{\rm SU}(3)}
+\newcommand{\ue}{{\rm U}(1)}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  Slash character...
+\def\slashed#1{\setbox0=\hbox{$#1$}             % set a box for #1
+   \dimen0=\wd0                                 % and get its size
+   \setbox1=\hbox{/} \dimen1=\wd1               % get size of /
+   \ifdim\dimen0>\dimen1                        % #1 is bigger
+      \rlap{\hbox to \dimen0{\hfil/\hfil}}      % so center / in box
+      #1                                        % and print #1
+   \else                                        % / is bigger
+      \rlap{\hbox to \dimen1{\hfil$#1$\hfil}}   % so center #1
+      /                                         % and print /
+   \fi}                                        %
+
+%%EXAMPLE:  $\slashed{E}$ or $\slashed{E}_{t}$
+
+%%
+
+\begin{document}
+
+\section{Summary of different signs in SU(2) theory}
+
+
+The sign of $ \lambda^{22a\ SU(N)} $ (i.e. the right-handed superorientational zero-mode in $\mc{N}=2$ ) is different 
+w.r.t. eqn. (3.20) in the heterotic paper.
+As a consequence, in $\mc{N}=1 $ theory in the small-$\mu$ limit, the signs of $ \lambda_+ $, $ \lambda_- $, $ \psi_+ $
+and $ \psi_- $ are different from those in eq.(7.8), (7.9).
+
+As for the supertranslational zero-modes, the $ \mc{N}=2 $ zero-modes agree with (3.18).
+In $ \mc{N}=1 $, however, the signs for the $ \mu $-terms in the Dirac equations disagree with (7.2).
+As a consequence, the unperturbed profile functions $ \lambda_{s0} $, $ \lambda_{t0} $, $ \psi_{s0} $ and $ \psi_{t0} $ do agree 
+with (7.6), whereas $ \lambda_{s1} $, $ \lambda_{t1} $, $ \psi_{s1} $ and $ \psi_{t1} $ {\it dis}agree with (7.7)
+in sign.
+
+Summarizing, the following terms require change of sign in the small-$\mu$ limit:
+\begin{align*}
+%
+	& 	\lambda_{s1}~, \qquad\qquad \lambda_{t1}~,  \qquad\qquad \text{not}~\lambda_{s0}~, \qquad\qquad \text{not}~\lambda_{t0}~, \\
+%
+	& 	\psi_{s1}~, \qquad\qquad \psi_{t1}~,  \qquad\qquad \text{not}~\psi_{s0}~, \qquad\qquad \text{not}~\psi_{t0}~, \\
+%
+	&	\lambda_+~, \qquad\qquad \lambda_-~, \qquad\qquad \psi_+~, \qquad\qquad \psi_-
+\end{align*}
+
+Going to the bifermionic term, which has contributions such as
+\[
+	\lambda_{t0} \lambda_- ~~+~~ \lambda_{t1} \lambda_+
+\]
+one finds that this expressions gets modified nontrivially in the small-$\mu$ limit: the first term does require a sign change, while
+the second does not.
+The same applies to other contribution(s) in the expression for the bifermionic coupling term.
+
+
+
+\end{document}

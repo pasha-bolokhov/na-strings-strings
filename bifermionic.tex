@@ -1,0 +1,102 @@
+\documentclass{article}
+\usepackage{latexsym}
+\usepackage{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\geometry{letterpaper}
+
+%% common definitions
+\newcommand{\p}{\partial}
+\newcommand{\wt}{\widetilde}
+\newcommand{\ov}{\overline}
+\newcommand{\mc}[1]{\mathcal{#1}}
+\newcommand{\md}{\mathcal{D}}
+
+
+\newcommand{\GeV}{{\rm GeV}}
+\newcommand{\eV}{{\rm eV}}
+\newcommand{\Heff}{{\mathcal{H}_{\rm eff}}}
+\newcommand{\Leff}{{\mathcal{L}_{\rm eff}}}
+\newcommand{\el}{{\rm EM}}
+\newcommand{\uflavor}{\mathbf{1}_{\rm flavor}}
+\newcommand{\lgr}{\left\lgroup}
+\newcommand{\rgr}{\right\rgroup}
+
+\newcommand{\LUV}{\Lambda_{\rm UV}}
+\newcommand{\LNC}{\Lambda_{\rm NC}}
+\newcommand{\LQCD}{\Lambda_{\rm QCD}}
+\newcommand{\Mpl}{M_{\rm Pl}}
+\newcommand{\suc}{{{\rm SU}_{\rm C}(3)}}
+\newcommand{\sul}{{{\rm SU}_{\rm L}(2)}}
+\newcommand{\sutw}{{\rm SU}(2)}
+\newcommand{\suth}{{\rm SU}(3)}
+\newcommand{\ue}{{\rm U}(1)}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  Slash character...
+\def\slashed#1{\setbox0=\hbox{$#1$}             % set a box for #1
+   \dimen0=\wd0                                 % and get its size
+   \setbox1=\hbox{/} \dimen1=\wd1               % get size of /
+   \ifdim\dimen0>\dimen1                        % #1 is bigger
+      \rlap{\hbox to \dimen0{\hfil/\hfil}}      % so center / in box
+      #1                                        % and print #1
+   \else                                        % / is bigger
+      \rlap{\hbox to \dimen1{\hfil$#1$\hfil}}   % so center #1
+      /                                         % and print /
+   \fi}                                        %
+
+%%EXAMPLE:  $\slashed{E}$ or $\slashed{E}_{t}$
+
+%%
+
+\begin{document}
+
+In the presence of the orientational modes, the gauge field has non-zero longitudinal
+components (hep-th/0403149):
+\[
+	A^{SU(2)}_\mu ~~=~~ -\,\frac{1}{2}\tau^a\, \epsilon^{abc}S^b \p_k S^c\rho(r) ~,  
+		\qquad\qquad  \mu = 0,3
+\]
+	
+
+The bifermionic coupling with the longitudinal SU(2) gauge field switched on looks as
+\begin{align*}
+	I_{\zeta\chi} ~~=~~ \int r dr \, & 
+			\lgr
+			\bigl( \lambda_{t0} \lambda_- ~+~ \lambda_{t1} \lambda_+ \bigr) (\rho(r) - 1) 
+			~+~
+			\frac{g^2}{2} \bigl( \psi_{t0}\psi_- ~+~ \psi_{t1}\psi_+\bigr)
+			(1 - \rho(r)/2)   
+			\right.
+			\\
+%
+			& 
+			\left.
+			~+~
+			\frac{g^2}{4} \bigl( \psi_{s0}\psi_- ~-~ \psi_{s1}\psi_+\bigr)\,\rho(r)
+			\rgr
+\end{align*}
+The relative sign in the last term seems strange, but I checked that it is such
+
+In the limit small $\mu$, also with all signs taken into account, the expression turns into
+\[
+	I_{\zeta\chi} ~~=~~ -\, \frac{\mu g^2}{2\sqrt{2}} \,
+			\int r\, dr \,
+		\lgr  \frac{ g^2 (\phi_1^2 ~-~ \phi_2^2)^2} {\phi_2^2} 
+			    \left( 1 ~+~ \frac{1}{2} f ~+~ \frac{3}{2} f_3 \right) ~~+~~
+			4\, g^2 (\phi_1^2 ~-~ \phi_2^2 ) f_3 \rgr ~.
+\]
+The latter term in the bracket is integrable.
+This expression agrees with that in the SU(N) case.
+
+%In the limit of small $\mu$, with $ \rho = 1 - \phi_1/\phi_2 $ substituted, this expression turns into
+
+(The old expression was:
+\[
+	I_{\zeta\chi} ~~=~~ -\,\frac{\mu g^2}{2\sqrt{2}} \, 
+			\int r\, dr \, 
+			\frac{g^2 (\phi_1^2 - \phi_2^2)^2}{\phi_2^2}
+			\lgr (f + f_3) ~-~ \frac{f - f_3}{2} ~-~ 1 \rgr~
+\]
+\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad)
+
+\end{document}

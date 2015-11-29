@@ -1,0 +1,83 @@
+\message{ !name(lowenergy_eqns.tex)}\documentclass{article}
+\usepackage{latexsym}
+\usepackage{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\geometry{letterpaper}
+
+%% common definitions
+\newcommand{\p}{\partial}
+\newcommand{\wt}{\widetilde}
+\newcommand{\ov}{\overline}
+\newcommand{\mc}[1]{\mathcal{#1}}
+\newcommand{\md}{\mathcal{D}}
+
+
+\newcommand{\GeV}{{\rm GeV}}
+\newcommand{\eV}{{\rm eV}}
+\newcommand{\Heff}{{\mathcal{H}_{\rm eff}}}
+\newcommand{\Leff}{{\mathcal{L}_{\rm eff}}}
+\newcommand{\el}{{\rm EM}}
+\newcommand{\uflavor}{\mathbf{1}_{\rm flavor}}
+\newcommand{\lgr}{\left\lgroup}
+\newcommand{\rgr}{\right\rgroup}
+
+\newcommand{\LUV}{\Lambda_{\rm UV}}
+\newcommand{\LNC}{\Lambda_{\rm NC}}
+\newcommand{\LQCD}{\Lambda_{\rm QCD}}
+\newcommand{\Mpl}{M_{\rm Pl}}
+\newcommand{\suc}{{{\rm SU}_{\rm C}(3)}}
+\newcommand{\sul}{{{\rm SU}_{\rm L}(2)}}
+\newcommand{\sutw}{{\rm SU}(2)}
+\newcommand{\suth}{{\rm SU}(3)}
+\newcommand{\ue}{{\rm U}(1)}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  Slash character...
+\def\slashed#1{\setbox0=\hbox{$#1$}             % set a box for #1
+   \dimen0=\wd0                                 % and get its size
+   \setbox1=\hbox{/} \dimen1=\wd1               % get size of /
+   \ifdim\dimen0>\dimen1                        % #1 is bigger
+      \rlap{\hbox to \dimen0{\hfil/\hfil}}      % so center / in box
+      #1                                        % and print #1
+   \else                                        % / is bigger
+      \rlap{\hbox to \dimen1{\hfil$#1$\hfil}}   % so center #1
+      /                                         % and print /
+   \fi}                                        %
+
+%%EXAMPLE:  $\slashed{E}$ or $\slashed{E}_{t}$
+
+%%
+
+\begin{document}
+
+\message{ !name(lowenergy_eqns.tex) !offset(-3) }
+
+
+\section*{Low energy vacuum equations for $\mc{N}=(0,2)$ heterotic Sigma Model with Twisted Masses}
+
+	The vacuum equations are:
+\begin{align*}
+%
+	&
+	|n|^2  ~~-~~  \frac{1}{4\pi} \sum_i^{N-1}\, 
+		{\rm log}\, 
+		\frac{i\,D ~+~ 2\, \left| \sigma \,-\, \frac{\displaystyle m^i}{\displaystyle \sqrt{2}} \right|^2}
+							{\Lambda^2}   ~~=~~ 0 \\				
+%
+	&
+	\lgr i\, D ~~+~~ 2\,\left|\sigma \,-\, \frac{m_0}{\sqrt{2}}\right|^2 \rgr n ~~=~~ 0 \\
+%
+&
+	\left(\sigma \,-\, \frac{m_0}{\sqrt{2}}\right)|n|^2 
+		~~-~~ 
+	\frac{1}{4\pi} \sum_i^{N-1}\,
+			\left(\sigma \,-\, \frac{m^i}{\sqrt{2}}\right)\,
+		{\rm log}\, 
+		\frac{i\,D ~+~ 2\, \left| \sigma \,-\, \frac{\displaystyle m^i}{\displaystyle \sqrt{2}} \right|^2}
+		{2\, \left| \sigma \,-\, \frac{\displaystyle m^i}{\displaystyle \sqrt{2}} \right|^2}
+		~~+~~ 2\, |\omega|^2\sigma ~~=~~ 0
+\end{align*}
+
+\end{document}
+
+\message{ !name(lowenergy_eqns.tex) !offset(-83) }

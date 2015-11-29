@@ -1,0 +1,1309 @@
+\documentclass{article}
+\usepackage{latexsym}
+\usepackage{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\geometry{letterpaper}
+
+%% common definitions
+\newcommand{\p}{\partial}
+\newcommand{\wt}{\widetilde}
+\newcommand{\ov}{\overline}
+\newcommand{\mc}[1]{\mathcal{#1}}
+\newcommand{\md}{\mathcal{D}}
+
+
+\newcommand{\GeV}{{\rm GeV}}
+\newcommand{\eV}{{\rm eV}}
+\newcommand{\Heff}{{\mathcal{H}_{\rm eff}}}
+\newcommand{\Leff}{{\mathcal{L}_{\rm eff}}}
+\newcommand{\el}{{\rm EM}}
+\newcommand{\uflavor}{\mathbf{1}_{\rm flavor}}
+\newcommand{\lgr}{\left\lgroup}
+\newcommand{\rgr}{\right\rgroup}
+
+\newcommand{\LUV}{\Lambda_{\rm UV}}
+\newcommand{\LNC}{\Lambda_{\rm NC}}
+\newcommand{\LQCD}{\Lambda_{\rm QCD}}
+\newcommand{\Mpl}{M_{\rm Pl}}
+\newcommand{\suc}{{{\rm SU}_{\rm C}(3)}}
+\newcommand{\sul}{{{\rm SU}_{\rm L}(2)}}
+\newcommand{\sutw}{{\rm SU}(2)}
+\newcommand{\suth}{{\rm SU}(3)}
+\newcommand{\ue}{{\rm U}(1)}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  Slash character...
+\def\slashed#1{\setbox0=\hbox{$#1$}             % set a box for #1
+   \dimen0=\wd0                                 % and get its size
+   \setbox1=\hbox{/} \dimen1=\wd1               % get size of /
+   \ifdim\dimen0>\dimen1                        % #1 is bigger
+      \rlap{\hbox to \dimen0{\hfil/\hfil}}      % so center / in box
+      #1                                        % and print #1
+   \else                                        % / is bigger
+      \rlap{\hbox to \dimen1{\hfil$#1$\hfil}}   % so center #1
+      /                                         % and print /
+   \fi}                                        %
+
+%%EXAMPLE:  $\slashed{E}$ or $\slashed{E}_{t}$
+
+%%
+
+
+\newcommand{\mUp}{m_{\rm U(1)}^{+}}
+\newcommand{\mUm}{m_{\rm U(1)}^{-}}
+\newcommand{\mNp}{m_{\rm SU(N)}^{+}}
+\newcommand{\mNm}{m_{\rm SU(N)}^{-}}
+\newcommand{\aU}{a^{\rm U(1)}}
+\newcommand{\aN}{a^{\rm SU(N)}}
+\newcommand{\baU}{\ov{a}{}^{\rm U(1)}}
+\newcommand{\baN}{\ov{a}{}^{\rm SU(N)}}
+\newcommand{\lU}{\lambda^{\rm U(1)}}
+\newcommand{\lN}{\lambda^{\rm SU(N)}}
+\newcommand{\Tr}{{\rm Tr\,}}
+\newcommand{\bxir}{\ov{\xi}{}_R}
+\newcommand{\bxil}{\ov{\xi}{}_L}
+\newcommand{\xir}{\xi_R}
+\newcommand{\xil}{\xi_L}
+\newcommand{\bzl}{\ov{\zeta}{}_L}
+\newcommand{\bzr}{\ov{\zeta}{}_R}
+\newcommand{\zr}{\zeta_R}
+\newcommand{\zl}{\zeta_L}
+\newcommand{\nbar}{\ov{n}}
+
+\begin{document}
+
+\section{4-dimensional Model}
+
+The fermionic part of the Lagrangian of the $ SU(N) \times U(1) $ $ \mc{N}=2 $ SQCD (with soft $ \mc{N}=1 $ masses) 
+takes the form
+\begin{align*}
+%
+\mc{L}_{\rm 4d} & ~~=~~ \frac{2i}{g_2^2} \ov{\lN_f \slashed{\md}} \lambda^{f{\rm SU(N)}}
+		~+~ \frac{4i}{g_1^2} \ov{\lU_f \slashed{\p}} \lambda^{f{\rm U(1)}}
+		~+~ \Tr i\, \ov{\psi \slashed{\md}} \psi  
+		~+~ \Tr i\, \wt{\psi} \slashed{\md} \ov{\wt{\psi}}
+		\\
+%
+		& 
+		~+~
+		i\sqrt{2}\, \Tr \lgr \ov{q}{}_f \lambda^{f{\rm U(1)}}\psi 
+				  ~+~ \ov{\psi} \lU_f q^f  
+				  ~+~ \ov{\psi \lU_f} q^f
+				  ~+~ \ov{q^f \lU_f \wt{\psi}} 
+				\rgr
+		\\
+%
+		&
+		~+~
+		i\sqrt{2}\, \Tr \lgr \ov{q}{}_f \lambda^{f{\rm SU(N)}} \psi 
+					~+~ \ov{\psi} \lN_f q^f
+					~+~ \ov{\psi \lN_f} q^f
+					~+~ \ov{q^f \lN_f \wt{\psi}}
+				\rgr
+		\\
+%
+		&
+		~+~
+		i\sqrt{2}\, \Tr \wt{\psi} \left( \aU ~+~ \aN \right) \psi  
+		~+~ 
+		i\sqrt{2}\, \Tr \ov{\psi} \left( \baU ~+~ \baN \right) \ov{\wt{\psi}}
+		\\
+%
+		&
+		~-~
+		2 \sqrt{\frac{N}{2}} \mu_1 \left( \lambda^{2\,{\rm U(1)}} \right)^2 
+		~-~
+		\mu_2 \Tr \left( \lambda^{2\,{\rm SU(N)}} \right)^2
+		~-~
+		2 \sqrt{\frac{N}{2}} \mu_1 \left( \ov{\lambda}{}^{\rm U(1)}_2 \right)^2
+		~-~
+		\mu_2 \Tr \left( \ov{\lambda}{}^{\rm SU(N)}_2 \right)^2~.
+\end{align*}
+	Here the U(1) gauge fields are normalized as follows:
+\begin{equation}
+\label{abel_norm}
+	A^{U(1)}_\mu ~~=~~ \frac 1 2 A^{\rm (abel)}_\mu ~, 
+	\qquad   \lambda^{f\alpha\ U(1)} ~~=~~ \frac 1 2 \lambda^{f\alpha}_{\rm (abel)} ~,
+	\qquad
+	\text{and similarly}~~
+	\aU ~~=~~ \frac 1 2 a^{\rm (abel)}~,
+\end{equation}
+	so that they all form an $ \mc{N}=2 $ gauge supermultiplet $ \mc{A}^{\rm U(1)} $.
+	Supersymmetry breaking comes from the superpotential
+\[
+	\mc{W}_{\mc{N}=1} ~~=~~ \sqrt{\frac{N}{2}}\frac{\mu_1}{2} \mc{A}^2 ~~+~~ 
+				\frac{\mu_2}{2} \left( \mc{A}^a \right)^2  
+			~~=~~ \sqrt{\frac{N}{2}}\, 2\mu_1 \left(\mc{A}^{U(1)}\right)^2  ~~+~~
+				\frac{\mu_2}{2} \left( \mc{A}^a \right)^2 ~.
+\]
+
+
+\section{$\mathcal{N}=2$ Supersymmetry}
+
+Superorientational zero-modes can be obtained by substituting the bosonic solution into the supersymmetry
+transformations. 
+In this case, the orientational moduli $ n^l $ are taken to be adiabatically dependent on the worldsheet
+coordinates. 
+Using the 2-dimensional supersymmetry transformations, the derivatives of the orientational moduli can
+be cast into the worldsheet coordinates $ \xir $, $ \xil $ via
+\begin{align*}
+%
+	i\,\sqrt{2}\epsilon^{12} \cdot \p_R \left(n \nbar\right) n\nbar & ~~=~~ 
+		\frac 1 2  \lgr \chi_R ~-~ \left[ n\nbar , \chi_R \right] \rgr
+		~~=~~ \xi_R \nbar~,  \\
+%
+	i\, \sqrt{2} \epsilon^{21} \cdot n\nbar\, \p_L \left(n\nbar\right) & ~~=~~
+		\frac 1 2 \lgr \chi_L ~+~ \left[ n\nbar, \chi_L \right] \rgr 
+		~~=~~ n \bxil~.
+\end{align*}
+
+Taking this into account, one obtains the superorientational zero-modes:
+\begin{align}
+\label{N2_sorient}
+%
+\notag
+\overline{\psi}_{\dot{2}Ak} & ~~=~~ \frac{\phi_1^2 ~-~ \phi_2^2}{\phi_2} \cdot n \overline{\xi}_L   \\
+%
+\notag
+\overline{\wt{\psi}}_{\dot{1}}^{kA}  & ~~=~~ - \frac{\phi_1^2 ~-~ \phi_2^2}{\phi_2} \cdot \xi_R \nbar  \\
+%
+\lambda^{11\ SU(N)} & ~~=~~ i \sqrt{2}\, \frac{ x^1 ~-~ i\, x^2 }{r^2} \frac{\phi_1}{\phi_2} f_N \cdot n \overline{\xi}_L \\
+%
+\notag
+\lambda^{22\ SU(N)} & ~~=~~ - i \sqrt{2}\, \frac{ x^1 ~+~ i\, x^2 }{r^2} \frac{\phi_1}{\phi_2} f_N \cdot \xi_R \nbar 
+\end{align}
+
+
+Supertranslational zero-modes are determined directly by plugging the bosonic string solution into the
+supersymmetry transformation, with the identification 
+\[
+	\zl ~~=~~ \epsilon^{11}~,  \qquad\qquad   \zr ~~=~~ \epsilon^{22}~.
+\]
+On then has,
+\begin{align}
+\label{N2_strans}
+%
+\notag
+\ov{\psi}_{\dot{2}}	& ~~=~~  -\,  2\sqrt{2}\, \frac{x_1 ~+~ i x_2}{N r^2} \,
+		\lgr \frac{1}{N} \phi_1 ( f + (N-1) f_N ) ~+~ \frac{N-1}{N} \phi_2 ( f - f_N ) ~+~ \right.
+		\\
+%
+\notag
+			& \phantom{~~=~~  -\,  2\sqrt{2}\, \frac{x_1 ~+~ i x_2}{N r^2} \,\lgr \right.}
+			\left( n\nbar ~-~ 1/N \right )
+			\Bigl\{ \phi_1 ( f + ( N-1 ) f_N ) ~-~ \phi_2 ( f - f_N) \Bigr\}
+		\left. \rgr\, \zeta_L 
+		\\
+%
+\notag
+\ov{\wt{\psi}}_{\dot{1}} & ~~=~~    2\sqrt{2} \, \frac{x_1 ~-~ i x_2}{N r^2} \,
+		\lgr \frac{1}{N} \phi_1 ( f + (N-1) f_N ) ~+~ \frac{N-1}{N} \phi_2 ( f - f_N ) ~+~ \right.
+		\\
+%
+\notag
+			& \phantom{~~=~~    2\sqrt{2} \, \frac{x_1 ~-~ i x_2}{N r^2} \,\lgr \right.}
+			\left( n\nbar ~-~ 1/N \right )
+			\Bigl\{ \phi_1 ( f + ( N-1 ) f_N ) ~-~ \phi_2 ( f - f_N) \Bigr\}
+		\left. \rgr\, \zeta_R
+		\\
+%
+\lambda^{11\ U(1)} 	& ~~=~~ -\, \frac{i g_1^2}{2} \lgr (N-1)\phi_2^2  ~+~ \phi_1^2 ~-~ N\xi \rgr \, \zeta_L 
+		\\
+%
+\notag
+\lambda^{22\ U(1)} 	& ~~=~~ +\, \frac{i g_1^2}{2} \lgr (N-1)\phi_2^2  ~+~ \phi_1^2 ~-~ N\xi \rgr \, \zeta_R 
+		\\
+%
+\notag
+\lambda^{11\ SU(N)}	& ~~=~~ -\, {i g_2^2}\, ( n\nbar ~-~ 1/N )\, \lgr \phi_1^2 ~-~ \phi_2^2 \rgr\, \zeta_L
+		\\
+%
+\notag
+\lambda^{22\ SU(N)}	& ~~=~~ +\, {i g_2^2}\, ( n\nbar ~-~ 1/N )\, \lgr \phi_1^2 ~-~ \phi_2^2 \rgr\, \zeta_R
+\end{align}
+
+We also list the conjugate superorientational zero-modes
+% ``Conjugate'' superorientational zero-modes of the NA string in ${\mathcal N}=2$ U(N) SQCD.
+\begin{align}
+\label{n2_sorient_conj}
+%
+\notag
+{\psi}_{2} & ~~=~~ \frac{\phi_1^2 ~-~ \phi_2^2}{\phi_2} \cdot \xi_L \nbar   \\
+%
+\notag
+\wt{\psi}_{1}  & ~~=~~ - \frac{\phi_1^2 ~-~ \phi_2^2}{\phi_2} \cdot n \ov{\xi}_R  \\
+%
+\ov{\lambda}^{\dot{1}\ SU(N)}_{\ 1} & ~~=~~ - i \sqrt{2}\, \frac{ x^1 ~+~ i\, x^2 }{r^2} \frac{\phi_1}{\phi_2} f_N \cdot \xi_L \nbar \\
+%
+\notag
+\ov{\lambda}^{\dot{2}\ SU(N)}_{\ 2} & ~~=~~  i \sqrt{2}\, \frac{ x^1 ~-~ i\, x^2 }{r^2} \frac{\phi_1}{\phi_2} f_N \cdot n \ov{\xi}_R 
+\end{align}
+	and the conjugate supertranslational zero-modes
+% ``Conjugate'' {\it supertranslational} zero-modes of the NA string in ${\mathcal N}=2$ U(N) SQCD.
+\begin{align*}
+%
+\psi_{2}	& ~~=~~  -\,  2\sqrt{2}\, \frac{x_1 ~-~ i x_2}{N r^2} \,
+		\lgr \frac{1}{N} \phi_1 ( f + (N-1) f_N ) ~+~ \frac{N-1}{N} \phi_2 ( f - f_N ) ~+~ \right.
+		\\
+%
+			& \phantom{~~=~~  -\,  2\sqrt{2}\, \frac{x_1 ~-~ i x_2}{N r^2} \,\lgr \right.}
+			\left( n\nbar ~-~ 1/N \right )
+			\Bigl\{ \phi_1 ( f + ( N-1 ) f_N ) ~-~ \phi_2 ( f - f_N) \Bigr\}
+		\left. \rgr\, \ov{\zeta}_L
+		\\
+%
+\wt{\psi}_{1} & ~~=~~    2\sqrt{2} \, \frac{x_1 ~+~ i x_2}{N r^2} \,
+		\lgr \frac{1}{N} \phi_1 ( f + (N-1) f_N ) ~+~ \frac{N-1}{N} \phi_2 ( f - f_N ) ~+~ \right.
+		\\
+%
+			& \phantom{~~=~~    2\sqrt{2} \, \frac{x_1 ~+~ i x_2}{N r^2} \,\lgr \right.}
+			\left( n\nbar ~-~ 1/N \right )
+			\Bigl\{ \phi_1 ( f + ( N-1 ) f_N ) ~-~ \phi_2 ( f - f_N) \Bigr\}
+		\left. \rgr\, \ov{\zeta}_R
+		\\
+%
+\ov{\lambda}^{\dot{1}\ U(1)}_{\ 1} 	& ~~=~~ +\, \frac{i g_1^2}{2} \lgr (N-1)\phi_2^2  ~+~ \phi_1^2 ~-~ N\xi \rgr \, \ov{\zeta}_L 
+		\\
+%
+\ov{\lambda}^{\dot{2}\ U(1)}_{\ 2} 	& ~~=~~ -\, \frac{i g_1^2}{2} \lgr (N-1)\phi_2^2  ~+~ \phi_1^2 ~-~ N\xi \rgr \, \ov{\zeta}_R 
+		\\
+%
+\ov{\lambda}^{\dot{1}\ SU(N)}_{\ 1}	& ~~=~~ +\, {i g_2^2}\, ( n\nbar ~-~ 1/N )\, \lgr \phi_1^2 ~-~ \phi_2^2 \rgr\, \ov{\zeta}_L
+		\\
+%
+\ov{\lambda}^{\dot{2}\ SU(N)}_{\ 2}	& ~~=~~ -\, {i g_2^2}\, ( n\nbar ~-~ 1/N )\, \lgr \phi_1^2 ~-~ \phi_2^2 \rgr\, \ov{\zeta}_R
+\end{align*}
+
+	The above modes can be shown to satisfy the Dirac equations
+\begin{align*}
+%
+	&\phantom{-i}
+	\frac{4i}{g_1^2}\, \left( \ov{\slashed{\p}}\lambda^{f U(1)} \right) 
+		~+~  i \sqrt{2}\, \Tr\lgr \ov{\psi} q^f  ~+~ \ov{q}{}^f \ov{\wt{\psi}} \rgr
+		~-~ 4\, \delta_2^{\ f}\sqrt{\frac{N}{2}} \mu_1\, \ov{\lambda}^{U(1)}_2  ~~=~~ 0 \\
+%
+	&\phantom{-i}
+	\frac{i}{g_2^2}\, \left( \ov{\slashed{\md}}\lambda^{f SU(N)}\right)^a 
+		~+~ i \sqrt{2}\, \Tr\lgr \ov{\psi}T^a q^f  ~+~  \ov{q}{}^f T^a \ov{\wt{\psi}} \rgr
+		~-~ \delta_2^{\ f} \mu_2\, \ov{\lambda}{}_2^{a SU(N)}  ~~=~~ 0 \\
+%
+	&
+	-i\, \ov{\psi} \overleftarrow{\ov{\slashed{\nabla}}}
+		~+~ i \sqrt{2} \lgr \ov{q}{}_f \left\{ \lambda^{f U(1)} + \lambda^{f SU(N)} \right\}
+					~+~ \wt{\psi} \left\{ \baU  ~+~ \baN \right\} \rgr    ~~=~~ 0 \\
+%
+	&\phantom{-i}
+	i\, \slashed{\nabla} \ov{\wt{\psi}} 
+		~+~ i \sqrt{2} \lgr \left\{ \lambda_f^{U(1)} ~+~ \lambda_f^{SU(N)} \right\} q^f
+					~+~ \left\{ \baU ~+~ \baN \right\}\psi \rgr  ~~=~~ 0 \\
+%
+	&\phantom{-i}
+	i \ov{\slashed{\nabla}}\psi 
+		~+~ i \sqrt{2} \lgr \left\{ \ov{\lambda}{}^{U(1)}_f ~+~ \ov{\lambda}{}^{SU(N)}_f \right\} q^f
+					~+~ \left\{ \aU ~+~ \aN \right\} \ov{\wt{\psi}} \rgr   ~~=~~ 0 \\
+%
+	&
+	-i\, \wt{\psi} \overleftarrow{\slashed{\nabla}}
+		~+~ i \sqrt{2} \lgr \ov{q}{}^f \left\{ \ov{\lambda}{}_f^{U(1)} ~+~ \ov{\lambda}{}_f^{SU(N)} \right\}
+					~+~ \ov{\psi} \left\{ \aU ~+~ \aN \right\} \rgr  ~~=~~ 0
+\end{align*}
+	with $ \mu_1 $, $ \mu_2 = 0 $.
+
+	In the presence of orientational modes, the gauge potential acquires the longitudinal components
+\[
+	A_\mu^{\rm SU(N)} ~~=~~ i\, \left[\, n\nbar, \p_\mu(n\nbar)\, \right] \rho(r)~,   \qquad\qquad\qquad \mu~=~0, 3~,
+\]
+	where $ \rho(r) = 1 - \phi_1/\phi_2 $.
+
+	The presence of translational modes similarly induces a contribution to the longitudinal components of both
+	of the potentials
+\begin{align*}
+%
+	A_\mu^{\rm U(1)}	& ~~=~~ \epsilon_{ij}\,\frac{ (x^i - x_0^i)\,\p_\mu(x^j - x_0^j)} {r^2}\, f(r)~, \\
+%
+	A_\mu^{\rm SU(N)}	& ~~=~~ \epsilon_{ij}\,\frac{ (x^i - x_0^i)\,\p_\mu(x^j - x_0^j)} {r^2}\, f_N(r)~,
+				\qquad\qquad\qquad \mu~=~0, 3~.
+\end{align*}
+
+\pagebreak
+%	The (2,2)-supersymmetric action obtained by substitution of supertranslational and superorientational
+%zero-modes into the 4-dimensional action, to the 2nd power in fermions, looks as:
+	The (2,2)-supersymmetric action of the $CP(N-1) \times C$ model looks as:
+\begin{align*}
+%
+\mc{S}_{\rm 1+1}^{\rm (2,2)}  ~~=~~ 
+	\int  d^2x
+	\Biggl\lgroup\; 
+	&
+		2\pi\xi \lgr   \frac{1}{2} \left(\p_k \vec{x}_0 \right)^2
+				~+~  \frac{1}{2} \ov{\zeta}{}_L\, i\p_R\, \zeta_L 
+				~+~  \frac{1}{2} \ov{\zeta}{}_R\, i\p_L\, \zeta_R
+			\rgr
+	\\
+%
+	~~+~~  
+	&\;
+	2\beta \lgr \left|\p_k n \right|^2  ~+~ \left(\ov{n}\p_k n\right)^2  
+		~+~ \ov{\xi}{}_L\, i\p_R\, \xi_L  ~+~ \ov{\xi}{}_R\, i\p_L\,  \xi_R 
+	~~-~~
+		\right . \\
+%
+	&\;
+	~~-~
+	i \left(\nbar\p_R n\right)\, \bxil\xil ~-~ i \left(\nbar\p_Ln\right) \, \bxir\xir 
+	~~+~~
+	\\
+%
+	&\;
+	\left .
+		~~+~
+		\bxil \xir \bxir \xil ~-~ \bxir \xir \bxil \xil
+	 \rgr
+	\Biggr\rgroup ~,
+\end{align*}
+	or with the spinor indices appropriately absorbed,
+\begin{align*}
+%
+\mc{S}_{\rm 1+1}^{\rm (2,2)}  ~~=~~ 
+	\int  d^2x
+	\Biggl\lgroup\; 
+	&
+		2\pi\xi \lgr \frac{1}{2} \left(\p_k \vec{x}_0 \right)^2
+				~+~ \frac{1}{2} \, i\, \ov{\zeta\,\slashed{\p}} \, \zeta
+			\rgr \\
+	~~+~~  
+	&\;
+	2\beta \lgr \left|\p_k n \right|^2  ~+~ \left(\ov{n}\p_k n\right)^2  
+	~+~ i\,\ov{\xi\,\slashed{\p}}\,\xi ~-~ 
+		\left(\ov{n}\,i\p_\mu n\right) \ov{\xi\,\sigma^\mu}\,\xi 
+	~-~ \frac{1}{2}\, \ov{\xi_i \xi}{}_k \xi^i \xi^k 
+	\rgr
+	\Biggr\rgroup~.
+\end{align*}
+
+	The kinetic part of this action can be obtained by substituting the supertranslational and
+	superorientational zero-modes into the 4-dimensional action, with proper normalization
+	of both the supertranslational and superorientational moduli.
+	In particular, the normalization of the (super)orientational moduli is chosen as follows:
+\[
+	n^{*}_l \, n^l ~~=~~ 1 \qquad\qquad\qquad\qquad \chi_{R,L} ~~=~~ \xi_{R,L} \nbar ~~+~~ n \ov{\xi}_{R,L}~.
+\]
+
+
+\pagebreak
+
+\section{$\mc{N}=(0,2)$ $ CP(N-1) $  Theory}
+
+The modified $ \mc{N} = (2,2) $ theory which leads to $ \mc{N}=(0,2) $ theory takes the form
+\begin{align*}
+%
+	S_{1+1}^{(0,2)}  ~~=~~ \int d^2 x 
+\Biggl \lgroup
+&
+	2\pi\xi \lgr \frac 1 2 \left (\p x_0\right)^2 ~+~
+		      \frac 1 2 \ov{\zeta}{}_L\, i\p_R\, \zeta_L ~+~
+			\frac 1 2 \ov {\zeta}{}_R\, i\p_L\, \zeta_R
+		\rgr
+	~+~ \\
+%
+&
+	2\beta \left| \nabla n \right|^2 ~+~ \frac{1}{4e^2} F_{kl}^2
+			~+~ \frac{1}{2e^2} \left|\p \sigma\right|^2 ~+~
+	4\beta\, |\sigma|^2\, |n|^2 ~+~
+	2\, e^2\beta^2 \left( |n|^2 ~-~ 1 \right)^2 ~+~\\
+%
+&
+	\frac{1}{e^2} \ov{\lambda}{}_R\, i\p_L \lambda_R ~+~
+	\frac{1}{e^2} \ov{\lambda}{}_L\, i\p_R \lambda_L ~+~
+	2\beta\, \ov{\xi}{}_R\, i\nabla_L\, \xi_R ~+~
+	2\beta\, \ov{\xi}{}_L\, i\nabla_R\, \xi_L ~+~ \\
+%
+&
+	i\,\sqrt{2}\,2\beta \lgr \sigma\, \ov{\xi}{}_R\xi_L ~+~ 
+				\ov{\sigma}\,\ov{\xi}{}_L\xi_R \rgr ~+~ \\
+%
+&
+	i\,\sqrt{2}\,2\beta 
+		\lgr \ov{n} \left( \lambda_R \xi_L ~-~ \lambda_L\xi_R \right)
+		~-~ \left( \ov{\xi_L\lambda}{}_R ~-~ \ov{\xi_R\lambda}{}_L \right) n \rgr 
+	~+~\\
+%
+&	
+	2\beta\,
+	\lgr 4 \left | \frac{\p \mc{W}_{1+1}}{\p\sigma} \right |^2 
+		~+~ i\, m_W \ov{\lambda}_L \frac{\p^2 \mc{W}_{1+1}}{\p \sigma^2} \zeta_R 
+	~+~ i\, m_W \ov{\zeta}{}_R \frac{\p^2 \ov{\mc{W}}{}_{1+1}}{\p\ov{\sigma}^2} \lambda_L 
+	\rgr
+	\Biggr \rgroup~,
+\end{align*}
+	where the modification is
+\[
+	\mc{W}_{1+1} ~~=~~ \frac 1 2 \delta \sigma^2~.
+\]
+
+
+	Upon the shift 
+\begin{align*}
+%
+	\bxir ~~\to~~ \bxir ~-~ \frac{m_W}{\sqrt{2}}\, \delta\,\zeta_R\ov{n} \\
+%
+	\xi_R ~~\to~~ \xi_R ~-~ \frac{m_W}{\sqrt{2}}\, \ov{\delta}\, \bzr n~,
+\end{align*}
+	this theory in the $ e^2 \to \infty $ limit turns into
+\begin{align}
+%
+\notag
+S_{1+1}^{(0,2)} ~~=~~
+	\int d^2 x 
+\Biggl\lgroup
+&
+	2\pi\xi \lgr \frac 1 2 \left (\p x_0\right)^2 ~+~
+		      \frac 1 2 \bzl\, i\p_R\, \zl ~+~
+			\frac 1 2 \bzr\, i\p_L\, \zr
+		\rgr
+	~+~ \\
+%
+\label{world02_unnorm}
+&
+	2\beta\, \Bigg\{
+	\left|\p n\right|^2 ~+~ \left(\ov{n}\p_k n\right)^2 ~+~
+	\bxir \, i\p_L \, \xir  ~+~ \bxil \, i\p_R \, \xil \\
+%
+\notag
+&
+	~~~~
+	-~
+	i \left(\ov{n}\p_L n\right)\, \bxir \xir ~-~ 
+	i \left(\ov{n}\p_R n\right)\, \bxil \xil 
+	\\
+%
+\notag
+&
+	~~~~
+	~+~
+	\frac{m_W/\sqrt{2}} { \sqrt{ 1~+~2|\delta|^2 } }
+	\lgr \delta\, (i\p_L \ov{n}) \xir\zr ~+~ 
+             \ov{\delta}\, \bxir (i\p_L n)\bzr 
+	\rgr \\
+%
+\notag
+&
+	~~~~
+	~+~ \frac{1}{1 + 2|\delta|^2}\, \bxil\xir \bxir\xil 
+	~-~ \bxil\xil\bxir\xir
+	~+~
+	\frac{m_W^2}{2}\,\frac{|\delta|^2}{1 ~+~ 2|\delta|^2}\,
+		\bxil\xil\bzr\zr \bigg\} 
+\Biggr\rgroup~.
+\end{align}
+
+	It is convenient to bring this action to a normalized form, by redefining $ \zr $, $ \zl $ and $ x_0 $,
+\[
+	\zr ~~\to~~ \frac {\zr}  {{m_W}/{2}}~, \qquad etc~.
+\]
+	Then the action reads
+\begin{align}
+%
+\notag
+S_{1+1}^{(0,2)} ~~=~~ 2\beta
+	\int d^2 x 
+	&
+\lgr
+	\bzr\, i\p_L\, \zr ~~+~~ \dots ~~+~~
+%\bzl\, i\p_R\, \zl ~~+~~ \left(\p x_0\right)^2 ~+~
+\right.
+	\\
+%
+\label{world02}
+	&
+	+~~
+	\left|\p n\right|^2 ~~+~~ \left(\ov{n}\p_k n\right)^2 ~~+~~
+	\bxir \, i\p_L \, \xir  ~~+~~ \bxil \, i\p_R \, \xil 
+	~-~
+	\\
+%
+\notag
+	&
+	-~~
+	i \left(\ov{n}\p_L n\right)\, \bxir \xir ~~-~~ 
+	i \left(\ov{n}\p_R n\right)\, \bxil \xil ~~+~~
+	\\
+%
+\notag
+	&
+	+~~
+	\gamma\, (i\p_L\nbar) \xir\zr ~~+~~ \ov{\gamma}\, \bxir (i\p_L n) \bzr ~~+~~
+	|\gamma|^2\, \bxil\xil \bzr\zr ~~+~~
+	\\
+%
+\notag
+	&
+\left.
+	+~~ 
+	\left( 1 \;-\; |\gamma|^2 \right)\, \bxil\xir \bxir\xil  
+	~~-~~ \bxil\xil \bxir\xir
+\rgr ,
+\end{align}
+	where the ellipsis stands for the decoupled part of the theory
+\[
+	\dots ~~=~~ \left(\p x_0\right)^2 ~~+~~ \bzl\, i\p_R\, \zl ~
+\]
+	(we have sacrificed the ``canonical'' normalization of the decoupled Lagrangian for that of the
+	dynamical Lagrangian \eqref{world02}).
+	The coefficient $ \gamma $ introduced here is related to the superpotential parameter $ \delta $ via
+\[
+	\gamma ~~=~~ \frac { \sqrt{2}\,\delta } { \sqrt{ 1 +  2 |\delta|^2 } }~.
+\]
+	The latter will be determined through the bifermionic coupling from the microscopic $\mc{N}=1$ theory.
+
+	The theory \eqref{world02} obeys the following $ \mc{N}=(0,2) $ supersymmetry:
+\begin{align*}
+%
+	&
+	\delta n ~~=~~ \sqrt{2}\, \epsilon_R \xil  \\
+%
+	&
+	 \delta\ov{n} ~~=~~ \sqrt{2}\, \ov{\epsilon_R \xi}{}_L
+	\\
+%
+	&
+	\delta\xil ~~=~~ i\sqrt{2}\, \ov{\epsilon}{}_R \p_L n ~~-~~ 
+			\sqrt{2}\, \ov{\epsilon}{}_R \bxil\xil \cdot n ~~-~~
+			i\sqrt{2}\, \ov{\epsilon}{}_R \left( \ov{n}\p_L n \right) \cdot n \\
+%
+	&
+	\delta\bxil ~~=~~ i\sqrt{2}\epsilon_R \p_L \ov{n}  ~~+~~
+			\sqrt{2}\,\epsilon_R \bxil\xil \cdot \ov{n} ~~+~~
+			i\sqrt{2}\, \epsilon_R \left( \ov{n} \p_L n \right) \cdot \ov{n} \\
+%
+	& 
+	\delta\xir ~~=~~ - \sqrt{2}\, \ov{\epsilon}{}_R \bxil\xir \cdot n 
+		~~-~~ \sqrt{2}\, \ov{\gamma}\epsilon_R\, \xil \bzr \\
+%
+	&
+	\delta\bxir  ~~=~~ \sqrt{2}\, \epsilon_R \bxir \xil \cdot \ov{n} 
+		~~-~~ \sqrt{2}\, \gamma\ov{\epsilon}{}_R\, \bxil\zr \\
+%
+	&
+	\delta\zeta_R ~~=~~ -\, \sqrt{2}\, \ov{\gamma}\epsilon_R \cdot \bxir\xil \\
+%
+	&
+	\delta\ov{\zeta}{}_R ~~=~~ \sqrt{2}\, \gamma \ov{\epsilon}{}_R \bxil\xir~.
+\end{align*}
+	These supersymmetry transformations preserve the constraints of the orientational variables
+\[
+	\ov{n}{}_l n^l ~~=~~ 1~, \qquad\qquad  \ov{n}{}_l\xi_\alpha^l ~~=~~ \ov{\xi}{}_{\alpha l} n^l ~~=~~ 0~,
+		\qquad\qquad\qquad  \alpha ~=~ R,L~.
+\]
+
+\section{Worldsheet $\mc{N}=(0,2)$ theory from the microscopic theory}
+%\section{$\mathcal{N}=1$ Supersymmetry}
+
+\subsection{Supertranslational zero-modes}
+\newcommand{\loU}{\lambda_0^{\rm U(1)}}
+\newcommand{\llU}{\lambda_1^{\rm U(1)}}
+\newcommand{\loN}{\lambda_0^{\rm SU(N)}}
+\newcommand{\llN}{\lambda_1^{\rm SU(N)}}
+\newcommand{\poU}{\psi_0^{\rm U(1)}}
+\newcommand{\plU}{\psi_1^{\rm U(1)}}
+\newcommand{\poN}{\psi_0^{\rm SU(N)}}
+\newcommand{\plN}{\psi_1^{\rm SU(N)}}
+
+We define the profiles $ \loU $, $ \llU $, $ \loN $, $ \llN $, $ \poU $, $ \plU $, $ \poN $, and $ \plN $ 
+as the generalization of the similar expressions for the U(2) theory:
+\begin{align*}
+%
+	\lambda^{22\ \rm U(1)} & ~~=~~ \loU\, \zeta_R ~+~ \llU\, \frac{x^1 + i x^2}{r} \ov{\zeta}{}_R 
+	\\
+%
+	\lambda^{22\ \rm SU(N)} & ~~=~~ \lgr  \loN\, \zeta_R ~+~ \llN\, \frac{x^1 + i x^2}{r} \ov{\zeta}{}_R \rgr
+					( n\nbar ~-~ 1/N )
+	\\
+%
+	\ov{\wt{\psi}}{}_{\dot{1}} & ~~=~~ \frac{1}{2} \frac{x^1 - i x^2}{r}
+				\lgr  \poU ~+~ N (n\nbar ~-~ 1/N) \poN \rgr \zeta_R \\
+				   & 
+				~~+~~ \frac{1}{2} \lgr  \plU  ~+~ N (n\nbar ~-~ 1/N) \plN \rgr  \ov{\zeta}{}_R
+\end{align*}
+
+The equations for the profiles are (the signs in front of $\mu$-terms are positive):
+\begin{align}
+%
+\notag
+&
+	-\, \p_r \loU ~+~ \frac{i g_1^2}{4\sqrt{2}} 
+			\lgr \poU (\phi_1 + \phi_2) ~+~ (N-1) \poN (\phi_1 - \phi_2) \rgr 
+				~+~ g_1^2 \sqrt{\frac{N}{2}} \mu_1 \llU    ~~=~~ 0
+	\\
+%
+\notag
+&
+	-\, \p_r \llU ~-~ \frac{1}{r}\llU 
+	~+~ \frac{i g_1^2}{4\sqrt{2}} 
+	    \lgr \plU (\phi_1 + \phi_2) ~+~ (N-1) \plN (\phi_1 - \phi_2) \rgr 
+	~+~ g_1^2 \sqrt{\frac{N}{2}} \mu_1 \loU ~~=~~ 0
+	\\
+%
+\notag
+&
+	-\, \p_r \loN ~+~ 
+	\frac{i g_2^2}{2\sqrt{2}}
+		\lgr \poU (\phi_1 - \phi_2) ~+~ \poN ( (N-1) \phi_1 + \phi_2 ) \rgr 
+	~+~ g_2^2\, \mu_2 \llN ~~=~~ 0
+	\\
+%
+\notag
+&
+	-\, \p_r \llN ~-~ \frac{1}{r}\llN
+	~+~ \frac{i g_2^2}{2\sqrt{2}} 
+		\lgr \plU (\phi_1 - \phi_2) ~+~ \plN ( (N-1) \phi_1 + \phi_2 ) \rgr
+	~+~ g_2^2\, \mu_2 \loN ~~=~~ 0
+	\\
+%
+\notag
+&
+	\p_r \poU ~+~ \frac{1}{r} \poU ~-~ \frac{1}{Nr}f \poU ~-~ \frac{N-1}{Nr} f_N \poN 
+	~~+~~  \\
+&\notag
+\qquad\qquad\qquad\qquad\qquad\qquad
+	i\, \frac{2\sqrt{2}}{N} 
+		\lgr  \loU (\phi_1 + (N-1)\phi_2) ~+~ \frac{N-1}{N} \loN (\phi_1 - \phi_2) \rgr 
+		~~=~~ 0
+	\\
+%
+&
+\label{N1_strans_eqn}
+	\p_r \plU ~-~ \frac{1}{Nr}f \plU ~-~ \frac{N-1}{Nr} f_N \plN 
+	~~+~~ \\
+&\notag
+\qquad\qquad\qquad\qquad\qquad\qquad
+	i\, \frac{2\sqrt{2}}{N}
+		\lgr \llU (\phi_1 + (N-1) \phi_2) ~+~ \frac{N-1}{N} \llN (\phi_1 - \phi_2) \rgr
+		~~=~~ 0
+	\\
+%
+&
+\notag
+	\p_r \poN ~+~ \frac{1}{r} \poN ~-~ \frac{1}{Nr} (f + (N-2)f_N) \poN ~-~
+			\frac{1}{Nr} f_N \poU 
+	~~+~~ \\
+&\notag
+\qquad\qquad\qquad\qquad\qquad\qquad
+	i\, \frac{2\sqrt{2}}{N} 
+		\lgr \loU (\phi_1 - \phi_2) ~+~ \frac{1}{N} \loN ((N-1)\phi_1 + \phi_2) \rgr
+		~~=~~ 0
+	\\
+%
+&
+\notag
+	\p_r \plN ~-~ \frac{1}{Nr} (f + (N-2)f_N) \plN - \frac{1}{Nr} f_N \plU 
+	~~+~~  \\
+&\notag
+\qquad\qquad\qquad\qquad\qquad\qquad
+	i\, \frac{2\sqrt{2}}{N}
+		\lgr \llU (\phi_1 - \phi_2) ~+~ \frac{1}{N} \llN ((N-1)\phi_1 + \phi_2) \rgr
+		~~=~~ 0
+\end{align}
+
+
+\pagebreak
+\subsection{Superorientational zero-modes}
+
+The ansatz is the generalization of the U(2) $ \mc{N}=1 $ zero-modes. 
+In particular there is an explicit factor of two arising from the identification
+\begin{align*}
+&	\chi_\alpha^a ~-~ i\,\epsilon^{abc} S^b \chi_\alpha^c  ~~~\Longrightarrow~~~ 
+				\chi_\alpha ~-~ [ n\ov{n},\chi_\alpha ]
+		~~~\Longrightarrow~~~  2\, \xi_\alpha \ov{n} 
+	\\
+&	\chi_\alpha^a ~+~ i\,\epsilon^{abc} S^b \chi_\alpha^c  ~~~\Longrightarrow~~~ 
+				\chi_\alpha ~+~ [ n\ov{n},\chi_\alpha ]
+		~~~\Longrightarrow~~~  2\, n\ov{\xi}{}_\alpha
+	~,
+	\qquad\qquad  \alpha=R,L~.
+\end{align*}
+The zero-modes then take the form
+\begin{align*}
+%
+	\lambda^{22\ {\rm SU(N)}} & ~~=~~ 2\, \frac{x^1 + ix^2}{r}\, \lambda_+(r) \; \xi_R\ov{n}
+				~~+~~  2\, \lambda_-(r)\; n\ov{\xi}{}_R
+	\\
+%
+	\ov{\wt{\psi}}{}_{\dot{1}} & ~~=~~ 2\, \psi_+(r)\; \xi_R \ov{n} 
+				~~+~~  2\, \frac{x^1 - i x^2}{r}\, \psi_-(r)\; n\ov{\xi}{}_R~.
+\end{align*}
+The equations for the profiles then read
+\begin{align}
+%
+\notag
+&
+	\p_r \psi_+ ~-~ \frac{1}{Nr} (f-f_N)\, \psi_+ ~+~ i\,\sqrt{2}\phi_1\,\lambda_+ ~~=~~ 0
+	\\
+%
+\notag
+	-\, & \p_r\lambda_+ ~-~ \frac{1}{r}\lambda_+ ~+~ \frac{f_N}{r}\lambda_+ 
+		~+~ i\,\frac{g_2^2}{\sqrt{2}}\phi_1\, \psi_+ ~+~ \mu_2 g_2^2\, \lambda_-  ~~=~~ 0
+	\\
+%
+\label{N1_sorient_eqn}
+&
+	\p_r \psi_- ~+~ \frac{1}{r}\, \psi_- ~-~ \frac{1}{Nr}(f + (N-1)f_N)\, \psi_- 
+							~+~ i\,\sqrt{2}\phi_2\, \lambda_- ~~=~~ 0
+	\\
+%
+\notag
+	-\, & \p_r\lambda_- ~-~ \frac{f_N}{r}\lambda_- ~+~ i\,\frac{g_2^2}{\sqrt{2}}\phi_2\, \psi_- 
+								~+~ \mu_2 g_2^2\, \lambda_+ ~~=~~ 0
+\end{align}
+
+\pagebreak
+\subsection{Small-$\mu$ limit}
+
+	For the supertranslational zero-modes the $ \mu^0 $-profiles are taken from Eq.~\eqref{N2_strans}:
+\begin{align}
+%
+\notag
+	\loU & ~~=~~ i\, \frac{g_1^2}{2}\, \lgr (N-1) \phi_2^2 ~+~ \phi_1^2 ~-~ N\xi \rgr  ~+~ O(\mu^2) 
+	\\
+%
+\notag
+	\loN & ~~=~~ i\, g_2^2 \lgr \phi_1^2 ~-~ \phi_2^2 \rgr ~+~ O(\mu^2)
+	\\
+%
+\label{N1_strans_smallmu}
+	\poU & ~~=~~ \frac{4\sqrt{2}}{N^2 r} \lgr \phi_1\, (f + (N-1) f_N) ~+~ (N-1)\, \phi_2\, (f-f_N) \rgr ~+~ O(\mu^2)
+	\\
+%
+\notag
+	\poN & ~~=~~ \frac{4\sqrt{2}}{N^2 r} \lgr \phi_1\, (f + (N-1) f_N) ~-~ \phi_2\, (f-f_N) \rgr ~+~ O(\mu^2)
+	~.
+\end{align}
+	The factor of $ 1/2 $ in the first equation is due to the normalization of the U(1) gauge field and the
+gaugino, Eq.~\eqref{abel_norm}.
+	The $\mu^1$-solutions of Eq.~\eqref{N1_strans_eqn} in the case
+% of equal couplings $ g_1 = g_2 $, 
+\[
+	g_1^2 \sqrt{\frac{N}{2}}\, \mu_1 ~~=~~ g_2^2 \mu_2  \qquad\qquad \Longleftrightarrow \qquad\qquad 
+		\mUp  ~~=~~ \mNp
+\]
+	are all proportional
+	to \eqref{N1_strans_smallmu} with a coefficient of $ g_2^2 \mu_2 r / 2 $:
+\begin{align*}
+%
+	& \plU ~~=~~ \frac{g_2^2\mu_2}{2}\, r \, \poU ~+~ O(\mu^3)		& \plN &~~=~~ \frac{g_2^2\mu_2}{2}\, r\, \poN ~+~ O(\mu^3)  
+	\\
+%
+	& \llU ~~=~~ \frac{g_2^2\mu_2}{2}\, r \, \loU ~+~ O(\mu^3)		& \llN &~~=~~ \frac{g_2^2\mu_2}{2}\, r\, \loN ~+~ O(\mu^3)~.
+\end{align*}
+Note that the signs here are consistent with the sign of $\mu$-terms in \eqref{N1_strans_eqn} and differ from
+those in arXiv:0803.0158v1.
+
+For the superorientational zero-modes the zero-order in $ \mu_2 $ profiles are taken from Eq.~\eqref{N2_sorient},
+\begin{align}
+%
+\notag
+ 	\lambda_+(r) & ~~=~~ -\, \frac{i}{\sqrt{2}} \frac{f_N}{r} \frac{\phi_1}{\phi_2}  ~+~ O(\mu_2^2) \\
+%
+\label{N1_sorient_smallmu_plus}
+	\psi_+(r) & ~~=~~ -\, \frac{\phi_1^2 ~-~ \phi_2^2}{2\phi_2} ~+~ O(\mu_2^2),
+\end{align}
+and the overall signs are correlated with the right-handed zero-modes in \eqref{N2_sorient}.
+The leading-order contributions to the $ \psi_- $ and $ \lambda_- $ profile functions are straightforwardly taken from the $ U(2) $ theory:
+\begin{align*}
+%
+	\psi_- & ~~=~~ -\, \mu_2 g_2^2 \frac{r}{4\phi_1} \left( \phi_1^2 ~-~ \phi_2^2 \right)  ~+~ O(\mu^3)
+	\\ 
+%
+	\lambda_- & ~~=~~ -\, \mu_2 g_2^2 \frac{i}{2\sqrt{2}} \lgr (f_N - 1) \frac{\phi_2}{\phi_1} ~+~ \frac{\phi_1}{\phi_2} \rgr ~+~ O(\mu^3)~.
+\end{align*}
+Again, the overall signs are correlated with \eqref{N1_sorient_smallmu_plus} and \eqref{N2_sorient}.
+
+
+
+\pagebreak
+\subsection{Large-$\mu$ limit}
+
+\subsubsection{Supertranslational zero-modes}
+
+{\it Large-$r$ domain: $ r \gg 1/(g\sqrt{\xi}) $.}
+
+At large $ \mu $ the gaugino $ \lambda^2 $ does not propagate and its kinetic terms can be dropped from Eq.~\eqref{N1_strans_eqn},
+and then it can be integrated out by excluding it from the equations of motion.
+Also, at large $ r $ one can put $ \phi_1 $, $\phi_2 $, $ f $ and $ f_N $ to their asymptotic values
+\begin{align*}
+%
+& 
+	\frac{i}{2\sqrt{2}} \sqrt{\xi} \poU ~+~ \mu_1 \sqrt{\frac{N}{2}}\, \llU ~~=~~ 0   
+&&
+	\p_r \,\poU ~+~ \frac{1}{r}\,\poU ~+~ i\, 2\sqrt{2}\sqrt{\xi}\, \loU ~~=~~ 0 
+\\
+%
+& 
+	\frac{i}{2\sqrt{2}} \sqrt{\xi} \plU ~+~ \mu_1 \sqrt{\frac{N}{2}}\, \loU ~~=~~ 0   
+&&
+	\p_r \, \plU ~+~ i\,2\sqrt{2}\sqrt{\xi}\,\llU ~~=~~ 0
+\\
+%
+&
+	\frac{i}{2\sqrt{2}} N\sqrt{\xi} \poN ~+~ \mu_2 \llN ~~=~~ 0  
+&&
+	\p_r \,\poN ~+~ \frac{1}{r}\, \poN ~+~ i\,\frac{2\sqrt{2}}{N} \sqrt{\xi}\, \loN ~~=~~ 0\,
+\\
+%
+&
+	\frac{i}{2\sqrt{2}} N\sqrt{\xi} \plN ~+~ \mu_2 \loN ~~=~~ 0
+&&
+	\p_r \,\plN ~+~ i\,\frac{2\sqrt{2}}{N}\sqrt{\xi} \llN ~~=~~ 0~.
+\end{align*}
+
+Keeping the notations for the light masses
+\[
+	\mUm ~~=~~ \sqrt{\frac{N}{2}}\, \frac{\xi}{\mu_1}~,  \qquad\qquad \mNm ~~=~~ \frac{\xi}{\mu_2}~,
+\]
+one has
+\begin{align*}
+%
+	\loU & ~~=~~ -\, \frac{i}{2\sqrt{2}}\, \frac{2}{N}\, \frac{\mUm}{\sqrt{\xi}}\, \plU 
+&
+	\llU & ~~=~~ -\, \frac{i}{2\sqrt{2}}\, \frac{2}{N}\, \frac{\mUm}{\sqrt{\xi}}\, \poU \\
+%
+	\loN & ~~=~~ -\, \frac{i}{2\sqrt{2}}\, N\, \frac{\mNm}{\sqrt{\xi}}\, \plN
+&
+	\llN & ~~=~~ -\, \frac{i}{2\sqrt{2}}\, N\, \frac{\mNm}{\sqrt{\xi}}\, \poN ~,
+\end{align*}
+and then 
+\begin{align*}
+%
+	& \p_r\, \plU ~+~ \frac{2}{N}\,\mUm\,\poU ~~=~~ 0
+	&& \p_r\, \plN ~+~ \mNm\,\poN ~~=~~ 0
+\\
+%
+	& \p_r\, \poU ~+~ \frac{1}{r}\,\poU ~+~ \frac{2}{N}\,\mUm\,\plU ~~=~~ 0
+	&& \p_r\, \poN ~+~ \frac{1}{r}\,\poN ~+~ \mNm\,\plN ~~=~~ 0~.
+%
+\end{align*}
+From these
+\begin{align*}
+%
+	& \p_r^2\, \plU  ~~+~~ \frac{1}{r}\p_r\, \plU ~-~ \frac{4}{N^2}\,(\mUm)^2\, \plU  ~~=~~ 0~, \\
+%
+	& \p_r^2\, \plN  ~~+~~ \frac{1}{r}\p_r\, \plN ~-~ (\mNm)^2\, \plN ~~=~~ 0~.
+\end{align*}
+
+The solution for these equations can be taken as
+\begin{align*}
+%
+	\plU & ~~=~~ \frac{2}{N}\,C\,\mUm\,\sqrt{\xi}\;K_0\left(\frac{2}{N}\mUm\,r\right)  
+&
+	\poU & ~~=~~ -\,C\sqrt{\xi}\; \p_r K_0\left(\frac{2}{N}\mUm\,r\right)
+\\
+%
+	\plN & ~~=~~ C\,\mNm\,\sqrt{\xi}\; K_0\left(\mNm\, r\right)
+&
+	\poN & ~~=~~ -\,C\sqrt{\xi}\; \p_r K_0\left(\mNm\,r\right)~.
+\end{align*}
+The solutions are determined up to a single common constant $ C $.
+At larger $ r $, but still in the region where $K_0$ does not fall off, the asymptotics for them is
+\[
+	\poU ~~=~~ \poN ~~\simeq~~ C\,\frac{\sqrt{\xi}}{r}~.
+\]
+
+{\it Intermediate-$r$ domain: $ r \lesssim 1/(g\sqrt{\xi}) $.} 
+Now, in the first and third equations in \eqref{N1_strans_eqn}, divided by $ \mu_1 $ and $ \mu_2 $ correspondingly,
+the quark contributions proportional to $ \xi/\mu $ can be ommited.
+As a consistency, these contributions will turn out to be finite before suppression by $ 1/\mu $.
+Effectively, this means that
+\[
+	\loU ~~=~~ \loN ~~=~~ 0~.
+\]
+For the sum and the difference of $ \poU $ and $ \poN $ we instantly derive
+\begin{align*}
+%
+&
+	\left\{ \p_r ~+~ \frac{1}{r} ~-~ \frac{1}{Nr}\left(f + (N-1)f_N\right)\right\}
+		\lgr \poU  + (N-1) \poN \rgr  ~~=~~ 0 
+	\\
+%
+&
+	\left\{ \p_r ~+~ \frac{1}{r} ~-~ \frac{1}{Nr}\left(f - f_N\right)\right\}
+		\lgr \poU - \poN \rgr ~~=~~ 0~,
+\end{align*}
+which shows that they have to be proportional to $ \phi_1/r $ and $ \phi_2/r $ correspondingly.
+Demanding finiteness at the core of the string, we obtain their difference vanishing, and therefore
+\[
+	\poU ~~=~~ \poN ~~\propto~~ \frac{\phi_1}{r}~.
+\]
+This agrees with the analysis at large $ r $ above, which states that they need to be proportional
+to $ \sqrt{\xi}/r $ at large $ r $.
+The proportionality coefficient $ C $ is not relevant, and it can be always absorbed into the normalization
+of the supertranslational modes.
+We fix it for convenience as
+\[
+	\poU ~~=~~ \poN ~~\equiv~~ \frac{2}{N}\, \frac{\phi_1}{r}~, \qquad\qquad  C ~=~ \frac{2}{N}~.
+\]
+
+
+\subsubsection{Old Version: Supertranslational zero-modes in regime $ \mu_2 ~~=~~ \mu_1 \sqrt{N/2} ~~\equiv~~ \mu $}
+
+The last four equations in \eqref{N1_strans_eqn} can be cast into the following form
+\begin{align}
+%
+\notag
+&
+	\loU ~+~ \frac{N-1}{N} \loN ~~=~~ \frac{i}{\sqrt{2}} \frac{1}{\phi_1} 
+			\lgr \p_r \psi_{+0} ~+~ \frac{1}{r} \psi_{+0} ~-~ \frac{1}{Nr} (f + (N-1) f_N) \psi_{+0} \rgr \\
+%
+\notag
+&
+	\loU ~-~ \frac{1}{N} \loN ~~=~~ \frac{i}{\sqrt{2}} \frac{1}{\phi_2} 
+			\lgr \p_r \psi_{-0} ~+~ \frac{1}{r} \psi_{-0} ~-~ \frac{1}{Nr} (f - f_N) \psi_{-0} \rgr \\
+%
+\label{N1_strans_lambda}
+&
+	\llU ~+~ \frac{N-1}{N} \llN ~~=~~ \frac{i}{\sqrt{2}} \frac{1}{\phi_1}
+			\lgr \p_r \psi_{+1} ~-~ \frac{1}{Nr} (f + (N-1)f_N) \psi_{+1} \rgr \\
+%
+\notag
+&
+	\llU ~-~ \frac{1}{N} \llN ~~=~~ \frac{i}{\sqrt{2}} \frac{1}{\phi_2}
+			\lgr \p_r \psi_{-1} ~-~ \frac{1}{Nr} (f - f_N) \psi_{-1} \rgr 
+	~,
+\end{align}
+	where 
+\[
+	\psi_{+0,1} ~~=~~ \frac{1}{2} \left\{ \poU ~+~ (N-1)\poN \right\}~, 
+	\qquad \text{and} \qquad
+	\psi_{-0,1} ~~=~~ \frac{1}{2} \left\{ \poU ~-~ \poN \right\}~.
+\]
+	Now plugging \eqref{N1_strans_lambda} into the first four equations in \eqref{N1_strans_eqn} while dropping
+the kinetic terms, one arrives at
+\begin{align}
+%
+\notag
+	& \p_r \psi_{+0} ~+~ \frac{1}{r}\psi_{+0} ~-~ \frac{1}{Nr} (f + (N-1)f_N)\psi_{+0}
+		~+~ \frac{m_L}{\xi} \lgr \phi_1^2 ~+~ \frac{N-2}{2N} \phi_1 ( \phi_1 - \phi_2 ) \rgr \psi_{+1} ~~=~~ 0 \\
+%
+\notag
+	& \p_r \psi_{-0} ~+~ \frac{1}{r}\psi_{-0} ~-~ \frac{1}{Nr} (f - f_N) \psi_{-0}
+		~+~ \frac{m_L}{\xi} \lgr \phi_2^2\, \psi_{-1} ~+~ \frac{N-2}{2N} \phi_2 ( \phi_1 - \phi_2 )\, \psi_{+1} \rgr ~~=~~ 0 \\
+%
+\label{large_mu_eqn}
+	& \p_r \psi_{+1} ~-~ \frac{1}{Nr} (f + (N-1)f_N)\psi_{+1} 
+		~+~ \frac{m_L}{\xi} \lgr \phi_1^2 ~+~ \frac{N-2}{2N} \phi_1 (\phi_1 - \phi_2) \rgr \psi_{+0} ~~=~~ 0 \\
+%
+\notag
+	& \p_r \psi_{-1} ~-~ \frac{1}{Nr} (f - f_N)\psi_{-1} 
+		~+~ \frac{m_L}{\xi} \lgr \phi_2^2\, \psi_{-0} ~+~ \frac{N-2}{2N} \phi_2 (\phi_1 - \phi_2)\, \psi_{+0} \rgr ~~=~~ 0~.
+\end{align}
+
+Completely similar to U(2), these equations are solved in two regions of $ r $.
+
+{\it Large-$r$ domain: $ r \gg 1/(g\sqrt{\xi}) $.}
+The functions $ f(r) $ and $ f_N(r) $ are dropped in this region, also $ \phi_1(r) $ and $ \phi_2(r) $ put to their asymptotic
+value $ \sqrt{\xi} $:
+\begin{align*}
+%
+	-\, \frac{1}{m_L} \p_r \psi_{+1} & ~~=~~ \psi_{+0}   \\
+%
+	-\, \frac{1}{m_L} \p_r \psi_{-1} & ~~=~~ \psi_{-0}~.	
+\end{align*}
+Using these one also arrives at 
+\begin{align*}
+%
+	& \p_r^2 \psi_{+1} ~+~ \frac{1}{r} \p_r \psi_{+1} ~-~ m_L^2 \psi_{+1} ~~=~~ 0 \\
+%
+	& \p_r^2 \psi_{-1} ~+~ \frac{1}{r} \p_r \psi_{-1} ~-~ m_L^2 \psi_{-1} ~~=~~ 0~.
+\end{align*}
+Again the solution being
+\begin{align*}
+%
+	& \psi_{+1} ~~\sim~~ m_L \sqrt{\xi} K_0(m_L r) 	&& \psi_{+0} ~~\sim~~ -\,\sqrt{\xi} \p_r K_0(m_L r) \\
+%
+	& \psi_{-1} ~~\sim~~ m_L \sqrt{\xi} K_0(m_L r)  && \psi_{-0} ~~\sim~~ -\,\sqrt{\xi} \p_r K_0(m_L r) ~.
+\end{align*}
+
+{\it Intermediate-$r$ domain: $ r \lesssim 1/(g\sqrt{\xi}) $.} 
+Dropping $ m_L $-terms in \eqref{large_mu_eqn}, 
+\begin{align*}
+%
+	& \p_r \psi_{+0} ~+~ \frac{1}{r} \psi_{+0} ~-~ \frac{1}{Nr}(f + (N-1)f_N) \psi_{+0} ~~=~~ 0 \\
+%
+	& \p_r \psi_{-0} ~+~ \frac{1}{r} \psi_{-0} ~-~ \frac{1}{Nr}(f - f_N) \psi_{-0} ~~=~~ 0~,
+\end{align*}
+which again are just the equation for the string profiles up to $ 1/r $, and so $ \psi_{+0} $ and 
+$ \psi_{-0} $ are proportional to $ \phi_1/r $ and $ \phi_2/r $ correspondingly.
+By finiteness at the string core, $ \psi_{-0} $ has to vanish, and so we arrive at
+\begin{equation}
+\label{tail_strans}
+	\poU ~~=~~ \poN ~~=~~ \frac{2}{N} \frac{\phi_1}{r} ~.
+\end{equation}
+
+\subsubsection{Superorientational zero-modes}
+
+Similarly we deal with superorientational zero-modes, rewriting the first and the third equations in \eqref{N1_sorient_eqn} as
+\begin{align}
+%
+\notag
+	\lambda_+ & ~~=~~ \frac{i}{\sqrt{2}\phi_1} \lgr \p_r \psi_+ ~-~ \frac{1}{Nr}(f - f_N)\psi_+ \rgr  \\
+%
+\notag
+	\lambda_- & ~~=~~ \frac{i}{\sqrt{2}\phi_2} \lgr \p_r \psi_- ~+~ \frac{1}{r} \psi_- ~-~ \frac{1}{Nr}(f + (N-1)f_N)\psi_- \rgr
+\end{align}
+Substituting these in the rest two equations of \eqref{N1_sorient_eqn} and dropping the kinetic terms, 
+\begin{align*}
+%
+\notag
+	& \p_r \psi_+ ~-~ \frac{1}{Nr} (f - f_N)\, \psi_+ ~+~ \mNm \frac{\phi_1\phi_2}{\xi}\, \psi_- ~~=~~ 0 \\
+%
+\notag
+	& \p_r \psi_- ~+~ \frac{1}{r}\psi_- ~-~ \frac{1}{Nr}(f + (N-1)f_N)\, \psi_- ~+~ \mNm \frac{\phi_1\phi_2}{\xi}\, \psi_+ ~~=~~ 0~.
+\end{align*}
+
+{\it Large-$r$ domain, $ r \gg 1/(g_2\sqrt{\xi})$~.} 
+Trivially the same as U(2):
+\[
+	\psi_- ~~=~~ -\,\frac{1}{\mNm} \p_r \psi_+~,
+\]
+and so
+\[
+	\psi_+ ~~=~~ \mNm K_0(\mNm r)~, \qquad\qquad \psi_- ~~=~~ -\, \p_r K_0(\mNm r)~.
+\]
+
+{\it Intermediate-$r$ domain, $ r \lesssim 1/(g_2\sqrt{\xi}) $}.
+In this region we again neglect the mass terms, and obtain
+\begin{align*}
+%
+	& \p_r \psi_+ ~-~ \frac{1}{Nr}(f - f_N)\, \psi_+ ~~=~~ 0 \\
+%
+	& \p_r \psi_- ~+~ \frac{1}{r}\psi_- ~-~ \frac{1}{Nr}(f + (N-1)f_N)\, \psi_- ~~=~~0~,
+\end{align*}
+the answer to these being
+\[
+	\psi_+ ~~=~~ c_1 \phi_2 \qquad\qquad	\psi_- ~~=~~ c_2 \frac{\phi_1}{r}~.
+\]
+Completely similar to U(2) model, one matches the constants in the large-$r$ limit,
+\begin{equation}
+\label{tail_sorient}
+	\psi_+ ~~=~~ \mNm \frac{\ln m_0/\mNm}{\sqrt{\xi}} \phi_2~,
+	\qquad\qquad
+	\psi_- ~~=~~ \frac{1}{\sqrt{\xi}} \frac{\phi_1}{r}~,
+	\qquad\qquad
+	m_0 ~~=~~ g_2\sqrt{\xi}~.
+\end{equation}
+
+\subsection{Bifermionic coupling}
+
+Inherited from the SU(2) theory, where the bifermionic coupling takes the form
+\[
+	\chi_R^a \, \lgr  i \p_L S^a (\zeta_R ~+~ \ov{\zeta}_R) ~+~
+				i\epsilon^{abc}S^b\, i \p_L S^c (\zeta_R ~-~ \ov{\zeta}_R ) \rgr
+\]
+one naturally has in the SU(N) theory the coupling 
+\[
+	4\; Tr \lgr  \left( n\,\ov{\xi_R \zeta}{}_R ~+~ \xi_R \ov{n}\, \zeta_R \right) \, i \p_L (n\ov{n}) \rgr  ~~=~~
+	4 \lgr  i\p_L \ov{n}\, \xi_R \, \zeta_R  ~+~  \ov{\xi}{}_R \, i \p_L n\, \ov{\zeta}{}_R \rgr~.
+\]
+
+The 2-dimensional action of the (0,2)-supersymmetric CP(N-1) model induced on the string worldsheet is
+\begin{align}
+%
+\notag
+	S_{\rm 1+1}^{CP(N-1)} ~~=~~  \int d^2x 
+	\Biggl\lgroup\; 
+	&
+		2\pi\xi \lgr   \frac{1}{2} \left(\p_k \vec{x}_0 \right)^2
+				~+~  \frac{N_{\zeta_L}}{2} \ov{\zeta}{}_L\, i\p_R \zeta_L 
+				~+~  \frac{I_\zeta}{2} \ov{\zeta}{}_R\, i\p_L \zeta_R
+			\rgr
+	\\
+%
+\label{world_unnorm}
+	~~+~~  
+	&\;
+	2\beta \lgr \left|\p_k n \right|^2  ~+~ \left(\ov{n}\p_k n\right)^2  
+		~+~ \ov{\xi}{}_L\, i\p_R \xi_L  ~+~  I_\xi\, \ov{\xi}{}_R\, i\p_L  \xi_R
+		\right .
+	\\
+%
+\notag
+	&\;
+		\left. 
+		~+~ I_{\zeta\xi} 
+			\left(  i\p_L\ov{n}\, \xi_R \zeta_R ~+~  \ov{\xi}{}_R \, i\p_L n \zeta_R \right)
+	 \rgr
+	~~+~~  \text{4-point}
+	\Biggr\rgroup ~.
+\end{align}
+	The bifermionic coupling $ I_{\zeta\xi} $ is related to that of the CP(1) model, $ I_{\zeta\chi} $ via
+\[
+	I_{\zeta\xi} ~~=~~ 2\, I_{\zeta\chi}~.
+\]
+
+The strength of this coupling is determined by substituting the supertranslational and superorientational zero-modes
+into the kinetic terms, and is
+\begin{align}
+%
+\notag
+	\mc{L}_{\rm 1+1} ~~\supset~~
+	&
+	\frac{2\pi}{g_2^2} \times  
+	4 \lgr  i\p_L \ov{n}\, \xi_R \, \zeta_R  ~+~  \ov{\xi}{}_R \, i \p_L n\, \ov{\zeta}{}_R \rgr
+	\times
+	\\
+%
+\label{biferm_general}
+	&
+	\times
+	\int r\, dr 
+	\biggl\lgroup  ( \rho(r)-1 ) \left( \loN \lambda_-   ~+~   \llN \lambda_+ \right) ~+~
+	g_2^2 \frac{N}{4} \left( \poN \psi_-   ~+~   \plN \psi_+ \right)  ~+~
+	\\
+%
+\notag
+	&
+	\qquad\qquad~~
+	g_2^2 \frac{\rho(r)}{4} \Bigl\{ \left(\poU ~-~ \poN\right) \psi_- ~-~
+	     		         	\left(\plU ~+~ (N-1)\plN\right) \psi_+ \Bigr\} 
+	\biggr\rgroup~.
+\end{align}
+
+In the small-$\mu$ limit, we take $ \mu_{1,2} $ and $ g_{1,2} $ such that
+\[
+	g_1^2 \sqrt{\frac{N}{2}}\, \mu_1 ~~=~~ g_2^2 \mu_2~,
+\]
+and upon substitution of the profile functions, the above expression turns into
+\begin{align*}
+%
+	&
+	\frac{2\pi}{g_2^2} \times  
+	4 \lgr  i\p_L \ov{n}\, \xi_R \, \zeta_R  ~+~  \ov{\xi}{}_R \, i \p_L n\, \ov{\zeta}{}_R \rgr
+	\times
+	\\
+%
+	&
+	\times
+	\left( -\, \frac{\mu_2 g_2^2}{2\sqrt{2}} \right)
+	\int r\, dr \,
+	\lgr  \frac{g_2^2(\phi_1^2 - \phi_2^2)^2}{\phi_2^2} 
+			\left( 1 ~+~ \frac{1}{N} f ~+~ \frac{2N - 1}{N}f_N \right) 
+			~+~
+		4 g_2^2 (\phi_1^2 ~-~ \phi_2^2) f_N \rgr~.
+\end{align*}
+
+
+The large-$\mu$ limit poses the most interest, as in that limit the relation between the 
+worldsheet deformation parameter $ \delta $ and the 4-dimensional deformation parameter $\mu$
+ceases to be linear. 
+To be able to compare $ I_{\zeta\xi} $ to the coefficient in front of the bifermionic mixing term in 
+the CP(N-1) model \eqref{world02}, one needs to properly normalize the kinetic terms in \eqref{world_unnorm}.
+In the large-$\mu$ limit the gauginos $ \lambda^2 $ decouple and one arrives at
+\begin{align*}
+%
+	I_\zeta & ~~=~~ \frac{N}{2\xi} 
+		\int r\, dr 
+			\lgr \left(\poU\right)^2 ~+~ \left(\plU\right)^2 ~+~ 
+				(N-1)\left\{\left(\poN\right)^2 ~+~
+				            \left(\plN\right)^2 \right\} 
+			\rgr~, \\
+%
+	I_\xi & ~~=~~ 2g_2^2\, 
+		\int r\, dr \lgr  \psi_+^2 ~+~ \psi_-^2 \rgr~, \\
+%
+	I_{\zeta\chi} & ~~=~~
+		\frac{N}{4}\, g_2^2\, 
+		\int r\, dr \lgr \poN\, \psi_- ~+~ \plN\, \psi_+ \rgr 
+		 ~~=~~ \frac 1 2 I_{\zeta\xi}~,
+\end{align*}
+	where we have omitted the gauge field contribution in \eqref{biferm_general} since it will not
+	produce large logarithms which we are after.
+
+	Substituting the long-range tails of the zero-modes 
+	\eqref{tail_strans} and \eqref{tail_sorient} we obtain
+	the large logarithm contributions to the normalization constants exactly the same as in the
+	SU(2) model:
+\begin{align*}
+%
+	I_\zeta & ~~=~~ 2\, \ln \frac{m_W}{m_L} ~+~ O(1)~, \\
+%
+	I_\xi & ~~=~~ 2\,g_2^2 \, \ln \frac{m_W}{m_L} ~+~ O(1)~, \\
+%
+	I_{\zeta\xi} & ~~=~~ g_2^2\sqrt{\xi}\, \ln \frac{m_W}{m_L} ~+~ O(1)~, 
+\end{align*}
+	where
+\[
+	m_L ~~=~~ \frac{\xi}{\mu_2}~,
+\]
+	and the integration is taken over the range $ 1/m_W \lesssim r \lesssim 1/m_L $.
+
+	Normalizing the fields $ \xi $ and $ \zeta $ and comparing with \eqref{world02_unnorm} one has that
+\[
+%	-\, 
+	\frac{m_W}{\sqrt{2}}\, \frac{\delta}{\sqrt{1 ~+~ 2\delta^2}} ~~=~~ 
+		\frac{m_W}{2} ~+~ O\left(\frac{1}{\ln\left(\frac{g_2^2\mu}{m_W}\right)}\right)~,
+\]
+	or, from an equivalent comparison with the normalized form \eqref{world02},
+\[
+%	-\, 
+	\gamma ~~=~~ 
+%	-\, 
+		\frac { \sqrt{2}\,\delta } { \sqrt{ 1 + 2 | \delta |^2 } } 
+		~~=~~ 1 ~~+~~ O\left(\frac{1}{\ln\left(\frac{g_2^2\mu}{m_W}\right)}\right)~.
+\]
+	This leads to the result
+\[
+	\delta~~=~~ 
+%-\, 
+	{\rm const} \cdot \sqrt{\ln\, \frac{g_2^2\mu}{m_W}}~,
+	\qquad\qquad \text{as $\mu ~\to~ \infty$}~.
+\]
+
+%
+%\begin{align*}
+%%
+%\mc{L}_{superorient} ~~=~~ &
+%\int dx^0 dx^3 \frac{1}{2\beta} 
+%	\left\lgroup 
+%	\ov{\xi}_L \, i (\md_0 ~+~ i \md_3 ) \xi_L ~~+~~ \ov{\xi}_R \, i (\md_0 ~-~ i \md_3 ) \xi_R 
+%	\right\rgroup 
+%	\times 
+%	\\
+%%
+%& \qquad\qquad \int dx^1 dx^2 
+%	\left\{  
+%		\frac { (\phi_1^2 ~-~ \phi_2^2)^2 } { \phi_2^2 }
+%		~~+~~
+%		\frac {4}{r^2 g_2^2}
+%		\left( \frac{\phi_1}{\phi_2}\,
+%			f_N 
+%		\right)^2 
+%	\right\}  & 
+%	\\
+%%
+%\mc{L}_{supertrans} ~~=~~ &
+%	\int dx^0 dx^3 \frac{1}{2\beta} 
+%	\lgr
+%		\ov{\zeta}_R \, i (\p_0 - i \p_3 ) \zeta_R ~+~
+%		\ov{\zeta}_L \, i (\p_0 + i \p_3 ) \zeta_L 
+%	\rgr
+%	\times
+%	\\
+%%
+%& \qquad\qquad \int dx^1 dx^2 
+%	\Bigl\{  
+%		8\, (\p_r \phi_1)^2   ~~+~~ 8\, (N-1) (\p_r \phi_2)^2 
+%		~~+~~
+%%	\right.
+%	\\
+%%
+%&\qquad\qquad
+%%	\left.
+%	\qquad\qquad
+%		g_1^2 \left( (N-1) \phi_2^2 ~+~ \phi_1^2 ~-~ N\xi \right)^2
+%		~~+~~
+%		2 g_2^2 \frac{N-1}{N} (\phi_1^2 ~-~ \phi_2^2 )^2 
+%	\Bigr\}
+%	\\
+%\end{align*}
+%
+
+\end{document}
